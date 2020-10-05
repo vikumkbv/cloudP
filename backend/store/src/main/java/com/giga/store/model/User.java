@@ -2,7 +2,9 @@ package com.giga.store.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -20,6 +22,8 @@ public abstract class User {
     private String username;
     private String email;
     private String password;
+    @OneToMany
+    private Set<Role> roles = new HashSet<>();
 
     public User() {
     }
@@ -58,10 +62,10 @@ public abstract class User {
     public String getPassword() {
         return password;
     }
-//
-//    public Set<Role> getRoles() {
-//        return roles;
-//    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
 
     // setters
     public void setUserID(String userID) {
@@ -89,5 +93,6 @@ public abstract class User {
     }
 
     public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }
